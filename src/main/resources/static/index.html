@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <style>
+        .login_line1 img {
+            margin-left: 155px;
+        }
+
+        form {
+            margin-left: 15px;
+        }
+
+        .login_line3 i {
+            cursor: pointer;
+        }
+
+        .login_other_l {
+            display: inline-block;
+            transform: translateY(-90%);
+            margin-top: 50%;
+            width: 140px;
+            height: 1px;
+            border-bottom: 1px solid #eee;
+            margin-right: 20px;
+        }
+
+        .login_other_r {
+            display: inline-block;
+            transform: translateY(-90%);
+            width: 140px;
+            height: 1px;
+            border-bottom: 1px solid #eee;
+            margin-left: 20px;
+        }
+
+        .login_line3 i {
+            font-size: 50px;
+
+        }
+
+        .login_line3 i:nth-child(1) {
+            margin-left: 70px;
+            color: green;
+        }
+
+        .login_line3 i:nth-child(2) {
+            margin-left: 80px;
+            color: #FE5134;
+        }
+
+        .login_line3 i:nth-child(3) {
+            margin-left: 80px;
+            color: #12B7F5;
+        }
+
+        .login_line7 .login_rem {
+            margin-left: 250px;
+
+        }
+
+        input {
+            max-width: 350px;
+        }
+
+        .login_rem a {
+            color: #FD5353;
+        }
+
+        .login_line8 button {
+            text-align: center;
+            width: 450px;
+        }
+
+        .login_line8 button:first-child {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #fff;
+            border: 1px solid #FD5353;
+            color: #FD5353;
+        }
+
+        .login_line8 button:last-child {
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FD5353;
+            border: 1px solid #FD5353;
+        }
+
+        .layui-form-checked[lay-skin=primary] i {
+            border-color: #FD5353 !important;
+        }
+
+        .layui-form-checked i, .layui-form-checked:hover i {
+            background-color: #FD5353 !important;
+        }
+    </style>
+
+</head>
+<body>
+<div class="layui-row">
+    <form action="" class="layui-form layui-form-pane layui-col-md4 layui-col-md-offset3" name="f">
+        <!--第四行-->
+        <div class="layui-form-item login_line4">
+            <i class="login_other_l"></i>登录<i class="login_other_r"></i>
+        </div>
+        <!--第五行-->
+        <div class="layui-form-item login_line5">
+            <label class="layui-form-label"><i
+                    class="layui-icon layui-icon-username"></i></label>
+            <div class="layui-input-block">
+                <input id='username' class="layui-input" lay-verify="username" name="username" placeholder="请输入用户名"
+                       type="text"/>
+            </div>
+        </div>
+        <!-- 第六行-->
+        <div class="layui-form-item login_line6">
+            <label class="layui-form-label"><i class="layui-icon layui-icon-password"></i></label>
+            <div class="layui-input-block">
+                <input id="password" class="layui-input" lay-verify="password" name="password" placeholder="请输入密码"
+                       type="password"/>
+            </div>
+        </div>
+        <div class="layui-form-item login_line8">
+            <button></button>
+            <button class="layui-btn login_btn" lay-filter="login" lay-submit onclick="check(this)">登陆</button>
+            <!--<button type="button" class="layui-btn" lay-submit lay-filter="login">登录</button>-->
+            <button></button>
+        </div>
+
+    </form>
+</div>
+<script src="js/jquery-3.5.1.min.js"></script>
+<script src="layui/layui.js"></script>
+<script>
+    function check(thisform) {
+
+        var name = document.getElementById("username").value;  //读取表单数据，创建变量
+        var pass = document.getElementById("password").value;
+
+        if (name === "2013040544q" && pass === "qsj0308") {
+            //验证变量。此处设置账号、密码（可设置多组，用||隔开）
+            alert("登录成功！");
+            window.document.f.action = "system.html";  //此处设置登录后跳转页面
+            window.document.f.submit();
+            return self.location = 'system.html';
+        } else {
+            alert("用户名或密码错误！");
+        }
+
+    }
+</script>
+<script>
+    layui.use(['form', 'layer'], function () {
+        var layer = layui.layer;
+        var form = layui.form;
+
+        form.verify({
+            username: function (value) {
+                if (value.length == 0) {
+                    return '用户名不能为空';
+                }
+                if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
+                    return '用户名不能有特殊字符';
+                }
+                if (/(^\_)|(\__)|(\_+$)/.test(value)) {
+                    return '用户名首尾不能出现下划线\'_\'';
+                }
+                if (/^\d+\d+\d$/.test(value)) {
+                    return '用户名不能全为数字';
+                }
+
+                //如果不想自动弹出默认提示框，可以直接返回 true，这时你可以通过其他任意方式提示（v2.5.7 新增）
+                if (value === 'xxx') {
+                    alert('用户名不能为敏感词');
+                    return true;
+                }
+            }
+            , password: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ],
+
+
+            // ,phone:[
+            //     /^[1][0-9]{10}$/
+            //     ,'手机号格式不正确'
+            // ]
+        });
+        $(".login").on('click', function () {
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
+            parent.layer.open({
+                url: '/system.html',
+                type: 2,    //弹出一个页面层
+                title: "system",
+                content: 'system.html',
+                area: ['500px', '550px'],
+                anim: 1
+            })
+        })
+    })
+</script>
+
+</body>
+</html>

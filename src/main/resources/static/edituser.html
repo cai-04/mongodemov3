@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="layui/css/layui.css" rel="stylesheet"
+          rel="external nofollow"
+          rel="external nofollow"
+          rel="external nofollow"
+          rel="external nofollow">
+</head>
+<body>
+<section class="layui-larry-box">
+    <div class="larry-personal">
+        <blockquote class="layui-elem-quote layui-text">
+            <span>更改用户基本信息</span>
+        </blockquote>
+        <form action="edituser" class="layui-form col-lg-5 " method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户id</label>
+                <div class="layui-input-block">
+                    <input autocomplete="off" class="layui-input" name="id" type="text" value="">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-block">
+                    <input autocomplete="off" class="layui-input" name="nickname" type="text" value="">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-block">
+                    <input autocomplete="off" class="layui-input" name="age" type="text" value="">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <input autocomplete="off" class="layui-input" name="sex" type="text" value="">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-filter="formDemo" lay-submit onclick=check(this)>更改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+<script src="layui/layui.js" type="text/javascript"></script>
+<script>
+    function check(thisform) {
+        var data = obj.data;
+        var id = obj.id;
+        var nickname = obj.nickname;
+        var age = obj.age;
+        var sex = obj.sex;
+        console.log(obj)
+        if (obj.event === 'edit') {
+            layer.confirm("", function (index) {
+                $.ajax({
+                    url: 'edituser',
+                    data: {
+                        'id': data.id,
+                        'nickname': data.nickname,
+                        'age': data.age,
+                        'sex': data.sex
+                    }, method: 'POST',
+                    traditional: true,
+                    success: function (msg) {
+                        layer.msg(msg);
+                        obj.edit();
+                    },
+                    error: function (msg) {
+                        layer.msg(msg)
+                    }
+                });
+                layer.close(index);
+            });
+        }
+    }
+</script>

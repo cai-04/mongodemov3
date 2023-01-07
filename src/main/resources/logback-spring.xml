@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="1 seconds">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <!-- CONTEXT -->
+    <property name="CONTEXT_NAME" value="service"/>
+    <contextName>${CONTEXT_NAME}</contextName>
+    <!-- 彩色日志配置 -->
+    <!-- 彩色日志依赖的渲染类 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex"
+                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <conversionRule conversionWord="wEx"
+                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+    <!-- 彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){green} %clr(${LOG_LEVEL_PATTERN:-%5p}){red} %clr(${PID:-}){magenta} %clr(---){blue} %clr([%30.30t]){yellow} %clr(%-40.40logger{39}){cyan} %clr(:){blue} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+    <!-- 日志控制台输出设置 -->
+    <!-- %m输出的信息，%p日志级别，%t线程名，%d日期，%c类的全名 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- <pattern>%d %p (%file:%line\)- %m%n</pattern> -->
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出设置 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>../logs/${CONTEXT_NAME}/${CONTEXT_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>../logs/${CONTEXT_NAME}/${CONTEXT_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <!-- mongoDB输出设置,此处是定义 -->
+    <appender name="MONGO" class="com.mongodemov3.config.MongoDBAppender">
+        <host>127.0.0.1</host>
+        <port>27017</port>
+        <!-- <username>lzw</username> -->
+        <!-- <password>123</password> -->
+        <dbName>springboot</dbName>
+        <collectionName>logdbs</collectionName>
+        <source>${CONTEXT_NAME}</source>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <!-- 总开关 -->
+    <root level="info">
+        <!-- 	<appender-ref ref="CONSOLE" /> -->
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="MONGO"/>
+    </root>
+
+</configuration>
+
+
+        <!--
+        <?xml version="1.0" encoding="UTF-8"?>
+        &lt;!&ndash; This configuration added to prevent logback default of DEBUG output &ndash;&gt;
+        <configuration>
+            &lt;!&ndash;定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径&ndash;&gt;
+            <property name="LOG_HOME" value="./log"/>
+            &lt;!&ndash; 设置变量。定义变量后，可以使“${}”来使用变量。 &ndash;&gt;
+            <property name="CONSOLE_LOG_PATTERN"
+                      value="%red(%date{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %red([%thread]) %boldMagenta(%logger{50}) %cyan(%msg%n)"/>
+            <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+                <encoder>
+                    <pattern>%red(%4d{yyyy-MM-dd HH:mm:ss.fff}) [%thread] %-5p - %c - %m%n</pattern>
+                    <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+                </encoder>
+            </appender>
+            &lt;!&ndash; ch.qos.logback.core.rolling.RollingFileAppender 文件日志输出 &ndash;&gt;
+            <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>${LOG_HOME}/room_1.log</File>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <FileNamePattern>${LOG_HOME}/room_1-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+                    &lt;!&ndash;指定日志保存天数&ndash;&gt;
+                    <MaxHistory>20</MaxHistory>
+                    <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        &lt;!&ndash;指定每个日志文件大小&ndash;&gt;
+                        <MaxFileSize>5MB</MaxFileSize>
+                    </TimeBasedFileNamingAndTriggeringPolicy>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%4d{yyyy-MM-dd HH:mm:ss} [%thread] %-5p - %c - %m%n</pattern>
+                </encoder>
+            </appender>
+
+            &lt;!&ndash;指定包内日志打印级别&ndash;&gt;
+            <logger name="org.gars" level="debug"/>
+            <logger name="org.apache.commons.httpclient" level="error"/>
+
+            <root level="info">
+                <appender-ref ref="console"/>
+                <appender-ref ref="file"/>
+            </root>
+            <appender name="mongo" class="com.mongodemov3.config.MongoDBAppender">
+            </appender>
+
+            <root level="info">
+                <appender-ref ref="console"/>
+                <appender-ref ref="file"/>
+                <appender-ref ref="mongo"/>
+            </root>
+        </configuration>-->
