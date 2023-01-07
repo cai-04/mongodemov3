@@ -27,9 +27,9 @@
 
     <!-- 文件输出设置 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>../logs/${CONTEXT_NAME}/${CONTEXT_NAME}.log</file>
+        <file>logs/${CONTEXT_NAME}/${CONTEXT_NAME}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>../logs/${CONTEXT_NAME}/${CONTEXT_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/${CONTEXT_NAME}/${CONTEXT_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
