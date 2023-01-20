@@ -293,4 +293,6 @@ public class Knife4jConfiguration {
 
 ## 12.springboot自定义图案启动
 
-找到src/main/resources/banner.txt文件，更改里面的内容即可，内容可以访问[Text to ASCII Art Generator (TAAG) (patorjk.com)](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type Something )生成，复制进去即可
+找到src/main/resources/banner.txt文件，更改里面的内容即可，内容可以访问
+            [Text to ASCII Art Generator (TAAG) (patorjk.com)(http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type Something )
+            生成，复制进去即可
