@@ -10,8 +10,6 @@
 
 # 项目说明：
 
-
-
 ## 1.系统入口说明：
 
 [入口地址：http://127.0.0.1:3000](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)或者[入口（跳过登陆页面）](http://127.0.0.1:3000/system.html)
@@ -293,6 +291,6 @@ public class Knife4jConfiguration {
 
 [Knife4j文档访问地址：127.0.0.1:3000/doc.html](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
 
-12.springboot自定义图案启动
+## 12.springboot自定义图案启动
 
 找到src/main/resources/banner.txt文件，更改里面的内容即可，内容可以访问[Text to ASCII Art Generator (TAAG) (patorjk.com)](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type Something )生成，复制进去即可
