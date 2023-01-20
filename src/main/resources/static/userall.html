@@ -63,25 +63,7 @@
                 $("#user").html('用户id：' + userid);
                 $("#userbody").append('姓名：' + user['codeNum'] + '&nbsp;昵称：' + user['phone'] + '&nbsp;年龄：' + user['school'] + '&nbsp;性别：' + user['address']
                     + '&nbsp;身份证号：' + user['codeNum'] + '&nbsp;电话：' + user['phone'] + '&nbsp;学校：' + user['school'] + '&nbsp;住址：' + user['address']);
-                //$("#userbody").append('<br>收件人：'+user['codeNum']+'&nbsp;收获人手机：'+user['phone']+'&nbsp;收获人地址：'+user['recevierAddress']);
-                /*    var logistics=user['logistics'];
-                    console.log(logistics);
-                    for(var i=logistics.length-1;i>=0;i--)
-                    {
-                        console.log(logistics[i]);
-                        $("#timezhou").append(' <li class="layui-timeline-item">\n' +
-                            ' <i class="layui-icon layui-timeline-axis"> </i>\n' +
-                            ' <div class="layui-timeline-content layui-text">\n' +
-                            ' <h3 class="layui-timeline-title">'+'('+logistics[i].operation+')'+logistics[i].operationTime+
-                            ' </h3><p>'+logistics[i].operator+'&nbsp;'+logistics[i].details+'<br>'+logistics[i].adress);
-                        if(logistics[i].phone!=0)
-                        {
-                            $("#timezhou").append('<br>'+logistics[i].phone);
-                        }
-                        $("#timezhou").append(' </p>\n' +
-                            ' </div>\n' +
-                            ' </li>');
-                    }*/
+               
             },
             error: function (user) {
                 layer.msg(user)
