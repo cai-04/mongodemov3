@@ -4,19 +4,19 @@
 
 本项目为mongo数据库大作业，对于一些基本模块的简单实现。代码放入码云仓库以及github。
 
-```
-https://gitee.com/Q0-3-0-8-_q-s-jQ/mongodemov3
-https://github.com/cai-04/mongodemov3
-```
+[gitee仓库](https://gitee.com/Q0-3-0-8-_q-s-jQ/mongodemov3)
 
-
+[github仓库](https://github.com/cai-04/mongodemov3)
 
 # 项目说明：
 
+
+
 ## 1.系统入口说明：
 
+[入口地址：http://127.0.0.1:3000](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)或者[入口（跳过登陆页面）](http://127.0.0.1:3000/system.html)
+
 ```
-入口地址：http://127.0.0.1:3000或者http://127.0.0.1:3000/system.html
 登录页面密码详见index.html 126行
 我在这里的用户名密码配置为：if (name==="2013040544q" && pass==="qsj0308") 
 具体的自己该，但需要遵守正则：用户名不能全为数字，用户名首尾不能出现下划线'_'，用户名不能有特殊字符，用户名不能为空
@@ -24,6 +24,8 @@ https://github.com/cai-04/mongodemov3
 这里为了简化项目而采用前端指定账号密码进行操作
 这里没有做严格限制也可以通过http://127.0.0.1:3000/system.html进入这里只是为了测试方便而跳过登陆界面
 ```
+
+
 
 ## 2.依赖引入
 
@@ -62,8 +64,6 @@ https://github.com/cai-04/mongodemov3
         </dependency>
 ```
 
-
-
 ## 3.修改application.properties配置文件，增加mongo数据库连接
 
 ```
@@ -98,6 +98,7 @@ user:用户信息存储
 12.userex.html：用户拓展信息表单页面
 13.usermanager.html：展示用户基本信息页面
 14.usermanagerdetails.html：展示用户拓展信息页面
+16.log.html：日志信息展示
 ```
 
 ## 7.前端数据交互采用ajax异步交互
@@ -111,6 +112,7 @@ utils:日志配置文件（IP类）
 controller:controller控制层
 service:service业务层
 dao:dao层数据库操作层
+log:日志读取层
 ```
 
 ## 9.logback配置文件，位置：src/main/resources/logback-spring.xml
@@ -178,26 +180,23 @@ dao:dao层数据库操作层
 说明：这里的<!-- mongoDB输出设置,此处是定义 -->
 <appender name="MONGO" class="com.mongodemov3.config.MongoDBAppender">，包名如果是自建项目需要改成自己的
 
-
-
 ## 10.layui的引入
 
-```
 引入后存放的位置，如果更改需要在代码里面也一起更改
 static/layui
-layui下载地址：http://layui.org.cn/index.html
+[layui下载地址：http://layui.org.cn/index.html](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
 下载完成后解压复制到对应项目的位置即可
 jQuery：版本号：3.5.1
-下载地址：http://www.jq22.com/jquery/jquery-3.5.1.zip
+[下载地址：http://www.jq22.com/jquery/jquery-3.5.1.zip](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
 下载后只需要把jquery-3.5.1.min.js复制到项目中，注意只需要min即可，再static文件夹下新建js文件夹复制进去即可。
 路径：static/js/jquery-3.5.1.min.js
-```
 
 ## 11.swagger配置
 
 引入依赖
 
-这里这么麻烦是有个bug,Swagger2(2.9版本)集成springboot(2.3.7版本)出现Illegal DefaultValue null for parameter type integer异常。需要我们处理一下。
+这里这么麻烦是有个bug,Swagger2(2.9版本)集成springboot(2.3.7版本)出现Illegal DefaultValue null for parameter type
+integer异常。需要我们处理一下。
 
 ```
 <dependency>
@@ -292,7 +291,8 @@ public class Knife4jConfiguration {
 
 说明：这里使用Knife4j为了美化swagger，原生的有点丑
 
-```
-Knife4j文档访问地址：127.0.0.1:3000/doc.html
-```
+[Knife4j文档访问地址：127.0.0.1:3000/doc.html](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
 
+12.springboot自定义图案启动
+
+找到src/main/resources/banner.txt文件，更改里面的内容即可，内容可以访问[Text to ASCII Art Generator (TAAG) (patorjk.com)](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type Something )生成，复制进去即可
